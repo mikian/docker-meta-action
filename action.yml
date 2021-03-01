@@ -1,0 +1,27 @@
+name: Docker Meta
+description: GitHub Action to extract metadata (tags, labels) for Docker
+author: itsmycargo
+branding:
+  color: blue
+  icon: layers
+
+inputs:
+  image:
+    description: Docker image to use as base name for tags
+    required: true
+  github-token:
+    description: GitHub Token as provided by secrets
+    default: ${{ github.token }}
+    required: true
+
+outputs:
+  sha:
+    description: Detected build commit
+  tags:
+    description: Generated Docker tags
+  labels:
+    description: Generated Docker labels
+
+runs:
+  using: node12
+  main: index.js
