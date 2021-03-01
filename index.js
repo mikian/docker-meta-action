@@ -20,16 +20,16 @@ function metaLabels(context) {
   ];
 }
 
-function metaTags(image, context) {
+function metaTags(image, default_branch, commit) {
   var tags = [];
 
-  tags.push(`${image}:${sha(context)}`);
+  tags.push(`${image}:${commit}`);
 
-  if (context.ref == `refs/heads/${context.payload.repository.default_branch}`) {
+  if (context.ref == `refs/heads/${default_branch}`) {
     tags.push(`${image}:latest`)
-    tags.push(`${image}:release-${context.sha.substr(0, 7)}`)
+    tags.push(`${image}:release-${commit.substr(0, 7)}`)
   } else {
-    tags.push(`${image}:dev-${context.sha.substr(0, 7)}`)
+    tags.push(`${image}:dev-${commit.substr(0, 7)}`)
   }
 
   return tags;
@@ -41,7 +41,11 @@ try {
 
   // Initialize context
   const labels = metaLabels(github.context);
-  const tags = metaTags(image, github.context);
+  const tags = metaTags(
+    image,
+    github.context.payload.repository.default_branch,
+    sha(github.context)
+  );
 
   console.log(`Labels:\n  ${labels.join(`\n  `)}`);
   core.setOutput('labels', labels.join(`\n`));
