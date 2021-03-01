@@ -20,12 +20,12 @@ function metaLabels(context) {
   ];
 }
 
-function metaTags(image, default_branch, commit) {
+function metaTags(image, context, commit) {
   var tags = [];
 
   tags.push(`${image}:${commit}`);
 
-  if (context.ref == `refs/heads/${default_branch}`) {
+  if (context.ref == `refs/heads/${context.payload.repository.default_branch}`) {
     tags.push(`${image}:latest`)
     tags.push(`${image}:release-${commit.substr(0, 7)}`)
   } else {
@@ -43,7 +43,7 @@ try {
   const labels = metaLabels(github.context);
   const tags = metaTags(
     image,
-    github.context.payload.repository.default_branch,
+    github.context,
     sha(github.context)
   );
 
