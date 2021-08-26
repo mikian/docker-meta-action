@@ -49,10 +49,14 @@ try {
 
   console.log(`Labels:\n  ${labels.join(`\n  `)}`);
   core.setOutput('labels', labels.join(`\n`));
+
   console.log(`Tags:\n  ${tags.join(`\n  `)}`);
   core.setOutput('tags', tags.join(`\n`));
-  core.setOutput('tag', tags[0]);
-  core.setOutput('sha', sha(github.context));
+
+  // Accessors
+  core.setOutput('image-tag', tags[0]);
+  core.setOutput('image', image);
+  core.setOutput('tag', sha(github.context));
 } catch (error) {
   core.setFailed(error.message);
 }

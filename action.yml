@@ -15,8 +15,10 @@ inputs:
     required: true
 
 outputs:
-  sha:
-    description: Detected build commit
+  image-tag:
+    description: Generated full image:tag format of published image
+  image:
+    description: Full URL of Published Image
   tag:
     description: Generated Main Docker Tag for Commit
   tags:
