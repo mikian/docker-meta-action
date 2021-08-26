@@ -17,6 +17,8 @@ inputs:
 outputs:
   sha:
     description: Detected build commit
+  tag:
+    description: Generated Main Docker Tag for Commit
   tags:
     description: Generated Docker tags
   labels:

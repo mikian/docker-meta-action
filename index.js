@@ -51,6 +51,7 @@ try {
   core.setOutput('labels', labels.join(`\n`));
   console.log(`Tags:\n  ${tags.join(`\n  `)}`);
   core.setOutput('tags', tags.join(`\n`));
+  core.setOutput('tag', tags[0]);
   core.setOutput('sha', sha(github.context));
 } catch (error) {
   core.setFailed(error.message);
