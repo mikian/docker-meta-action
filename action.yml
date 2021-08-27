@@ -6,8 +6,8 @@ branding:
   icon: layers
 
 inputs:
-  image:
-    description: Docker image to use as base name for tags
+  repository:
+    description: Docker repository where image is to be published
     required: true
   github-token:
     description: GitHub Token as provided by secrets
@@ -15,9 +15,9 @@ inputs:
     required: true
 
 outputs:
-  image-tag:
+  repositoryTag:
     description: Generated full image:tag format of published image
-  image:
+  repository:
     description: Full URL of Published Image
   tag:
     description: Generated Main Docker Tag for Commit

@@ -20,16 +20,16 @@ function metaLabels(context) {
   ];
 }
 
-function metaTags(image, context, commit) {
+function metaTags(repository, context, commit) {
   var tags = [];
 
-  tags.push(`${image}:${commit}`);
+  tags.push(`${repository}:${commit}`);
 
   if (context.ref == `refs/heads/${context.payload.repository.default_branch}`) {
-    tags.push(`${image}:latest`)
-    tags.push(`${image}:release-${commit.substr(0, 7)}`)
+    tags.push(`${repository}:latest`)
+    tags.push(`${repository}:release-${commit.substr(0, 7)}`)
   } else {
-    tags.push(`${image}:dev-${commit.substr(0, 7)}`)
+    tags.push(`${repository}:dev-${commit.substr(0, 7)}`)
   }
 
   return tags;
@@ -37,12 +37,12 @@ function metaTags(image, context, commit) {
 
 try {
   // Fetch inputs
-  const image = core.getInput('image');
+  const repository = core.getInput('repository');
 
   // Initialize context
   const labels = metaLabels(github.context);
   const tags = metaTags(
-    image,
+    repository,
     github.context,
     sha(github.context)
   );
@@ -54,8 +54,8 @@ try {
   core.setOutput('tags', tags.join(`\n`));
 
   // Accessors
-  core.setOutput('image-tag', tags[0]);
-  core.setOutput('image', image);
+  core.setOutput('repositoryTag', tags[0]);
+  core.setOutput('repository', repository);
   core.setOutput('tag', sha(github.context));
 } catch (error) {
   core.setFailed(error.message);
