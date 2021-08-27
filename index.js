@@ -54,8 +54,11 @@ try {
   core.setOutput('tags', tags.join(`\n`));
 
   // Accessors
+  console.log(`repositoryTag: ${tags[0]}`);
   core.setOutput('repositoryTag', tags[0]);
+  console.log(`repository: ${repository}`);
   core.setOutput('repository', repository);
+  console.log(`tag: ${sha(github.context)}`);
   core.setOutput('tag', sha(github.context));
 } catch (error) {
   core.setFailed(error.message);
