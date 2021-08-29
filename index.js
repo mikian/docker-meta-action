@@ -32,6 +32,11 @@ function metaTags(repository, context, commit) {
     tags.push(`${repository}:dev-${commit.substr(0, 7)}`)
   }
 
+  // Append PR number
+  if (context.payload && context.payload.pull_request) {
+    tags.push(`${repository}:pr-${context.payload.pull_request.number}`)
+  }
+
   return tags;
 }
 
