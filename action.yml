@@ -9,10 +9,6 @@ inputs:
   repository:
     description: Docker repository where image is to be published
     required: true
-  github-token:
-    description: GitHub Token as provided by secrets
-    default: ${{ github.token }}
-    required: true
 
 outputs:
   repositoryTag:
