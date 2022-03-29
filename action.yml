@@ -1,6 +1,6 @@
 name: Docker Meta
 description: GitHub Action to extract metadata (tags, labels) for Docker
-author: itsmycargo
+author: mikian
 branding:
   color: blue
   icon: layers
