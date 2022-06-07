@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/mikian/docker-meta-action/compare/v1.0.0...v1.1.0) (2022-06-07)
+
+
+### Features
+
+* simpler outputs ([c218bb4](https://www.github.com/mikian/docker-meta-action/commit/c218bb418c2aaad2406e44d1e8d000d35caf1a7f))
+
 ## 1.0.0 (2022-03-29)
 
 
