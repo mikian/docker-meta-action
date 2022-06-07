@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.1](https://www.github.com/mikian/docker-meta-action/compare/v1.1.0...v1.1.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* cleanup requires fixed prefixes ([fd9ecd6](https://www.github.com/mikian/docker-meta-action/commit/fd9ecd6465f37bfb1b045c12b528e4a1063d0294))
+
 ## [1.1.0](https://www.github.com/mikian/docker-meta-action/compare/v1.0.0...v1.1.0) (2022-06-07)
 
 
