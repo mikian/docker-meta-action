@@ -24,12 +24,11 @@ function metaTags(repository, context, commit) {
   var tags = [];
 
   tags.push(`${repository}:${commit}`);
+  tags.push(`${repository}:${context.ref.replace('refs/heads/', '')}`);
+  tags.push(`${repository}:${context.ref.replace('refs/heads/', '')}-${commit.substr(0, 7)}`);
 
   if (context.ref == `refs/heads/${context.payload.repository.default_branch}`) {
     tags.push(`${repository}:latest`)
-    tags.push(`${repository}:release-${commit.substr(0, 7)}`)
-  } else {
-    tags.push(`${repository}:dev-${commit.substr(0, 7)}`)
   }
 
   // Append PR number
