@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.1.2](https://www.github.com/mikian/docker-meta-action/compare/v1.1.1...v1.1.2) (2022-07-27)
+
+
+### Bug Fixes
+
+* add invalid outputs ([46f2553](https://www.github.com/mikian/docker-meta-action/commit/46f2553dde341aa839b8c76db165b04169b7e0ed))
+* add missing outputs ([a89883d](https://www.github.com/mikian/docker-meta-action/commit/a89883d0813e6693e2aee34f282d4076e3c258e3))
+
 ### [1.1.1](https://www.github.com/mikian/docker-meta-action/compare/v1.1.0...v1.1.1) (2022-06-07)
 
 
