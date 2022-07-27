@@ -12,11 +12,8 @@ function sha(context) {
 function metaLabels(context) {
   return [
     `org.opencontainers.image.created=${(new Date()).toISOString()}`,
-    `org.opencontainers.image.description=${context.payload.repository.description || ''}`,
     `org.opencontainers.image.revision=${sha(context) || ''}`,
     `org.opencontainers.image.source=${context.payload.repository.html_url || ''}`,
-    `org.opencontainers.image.title=${context.payload.repository.name || ''}`,
-    `org.opencontainers.image.url=${context.payload.repository.html_url || ''}`,
   ];
 }
 
@@ -53,11 +50,21 @@ try {
     sha(github.context)
   );
 
-  console.log(`Labels:\n  ${labels.join(`\n  `)}`);
-  core.setOutput('labels', labels.join(`\n`));
+  console.log(`RepositoryTag:\n  ${core.getInput('repository')}:${tags[0]}`);
+  core.setOutput('repositoryTag', `${core.getInput('repository')}:${tags[0]}`);
 
+  console.log(`repository:\n  ${core.getInput('repository')}`);
+  core.setOutput('repository', core.getInput('repository'));
+
+  console.log(`Tag:\n  ${tags[0]}`);
+  core.setOutput('tag', `${tags[0]}`);
+
+  
   console.log(`Tags:\n  ${tags.join(`\n  `)}`);
   core.setOutput('tags', tags.join(`\n`));
+  
+  console.log(`Labels:\n  ${labels.join(`\n  `)}`);
+  core.setOutput('labels', labels.join(`\n`));
 
   console.log(`SHA:\n  ${sha(github.context)}`);
   core.setOutput('sha', sha(github.context));
