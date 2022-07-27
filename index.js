@@ -50,14 +50,14 @@ try {
     sha(github.context)
   );
 
-  console.log(`RepositoryTag:\n  ${core.getInput('repository')}:${tags[0]}`);
-  core.setOutput('repositoryTag', `${core.getInput('repository')}:${tags[0]}`);
+  console.log(`RepositoryTag:\n  ${tags[0]}`);
+  core.setOutput('repositoryTag', tags[0]);
 
   console.log(`repository:\n  ${core.getInput('repository')}`);
   core.setOutput('repository', core.getInput('repository'));
 
-  console.log(`Tag:\n  ${tags[0]}`);
-  core.setOutput('tag', `${tags[0]}`);
+  console.log(`Tag:\n  ${sha(github.context)}`);
+  core.setOutput('tag', `${sha(github.context)}`);
 
   
   console.log(`Tags:\n  ${tags.join(`\n  `)}`);
