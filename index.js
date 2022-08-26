@@ -20,6 +20,8 @@ function metaLabels(context) {
 function metaTags(repository, context, commit) {
   var tags = [];
 
+  console.log(`Context: ${context}`);
+
   var ref = context.head_ref || context.ref;
 
   tags.push(`${repository}:${commit}`);
