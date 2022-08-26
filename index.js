@@ -20,7 +20,7 @@ function metaLabels(context) {
 function metaTags(repository, context, commit) {
   var tags = [];
 
-  console.log(`Context: ${json.dumps(context)}`);
+  console.log(`Context: ${JSON.stringify(context)}`);
 
   var ref = context.head_ref || context.ref;
 
