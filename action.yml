@@ -1,6 +1,6 @@
 name: Docker Meta
 description: GitHub Action to extract metadata (tags, labels) for Docker
-author: mikian
+author: leap-financial
 branding:
   color: blue
   icon: layers
@@ -23,7 +23,9 @@ outputs:
     description: Generated Docker labels
   sha:
     description: Commit SHA for docker build
+  short-sha:
+    description: Short commit SHA (8 characters)
 
 runs:
-  using: node12
+  using: node16
   main: index.js
