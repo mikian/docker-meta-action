@@ -1,6 +1,10 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 
+function filterString(string) {
+  return string.replace(/[^\w.-]/g, '_').replace(/[^\w]/, '').substr(0, 127);
+}
+
 function sha(context) {
   if (context.payload && context.payload.pull_request) {
     return context.payload.pull_request.head.sha;
@@ -22,11 +26,12 @@ function metaTags(repository, context, commit) {
 
   var ref = (context.payload && context.payload.pull_request) ? context.payload.pull_request.head.ref : context.ref;
 
+  const branch = filterString(ref.replace('refs/heads/', ''));
+
   tags.push(`${repository}:${commit}`);
-  tags.push(`${repository}:${ref.replace('refs/heads/', '')}`);
+  tags.push(`${repository}:${branch}`);
 
   if (context.ref == `refs/heads/${context.payload.repository.default_branch}`) {
-    tags.push(`${repository}:latest`)
     tags.push(`${repository}:release-${commit.substr(0, 7)}`)
   } else {
     tags.push(`${repository}:dev-${commit.substr(0, 7)}`)
