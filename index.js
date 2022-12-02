@@ -44,12 +44,14 @@ try {
   // Fetch inputs
   const repository = core.getInput('repository');
 
+  const commit = sha(github.context);
+
   // Initialize context
   const labels = metaLabels(github.context);
   const tags = metaTags(
     repository,
     github.context,
-    sha(github.context)
+    commit
   );
 
   console.log(`RepositoryTag:\n  ${tags[0]}`);
@@ -58,9 +60,8 @@ try {
   console.log(`repository:\n  ${core.getInput('repository')}`);
   core.setOutput('repository', core.getInput('repository'));
 
-  console.log(`Tag:\n  ${sha(github.context)}`);
-  core.setOutput('tag', `${sha(github.context)}`);
-
+  console.log(`Tag:\n  ${commit}`);
+  core.setOutput('tag', `${commit}`);
 
   console.log(`Tags:\n  ${tags.join(`\n  `)}`);
   core.setOutput('tags', tags.join(`\n`));
@@ -68,9 +69,11 @@ try {
   console.log(`Labels:\n  ${labels.join(`\n  `)}`);
   core.setOutput('labels', labels.join(`\n`));
 
-  console.log(`SHA:\n  ${sha(github.context)}`);
-  core.setOutput('sha', sha(github.context));
+  console.log(`SHA:\n  ${commit}`);
+  core.setOutput('sha', commit);
 
+  console.log(`Short SHA:\n . ${commit.substr(0, 7)}`);
+  core.setOutput('short-sha', commit.substr(0, 7))
 } catch (error) {
   core.setFailed(error.message);
 }
